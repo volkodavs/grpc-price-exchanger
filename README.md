@@ -7,7 +7,7 @@
 
 ## Modules 
 
-* Money Maker - submit prices on server 
-* Server - consume new prices and notify clients with a new prices
-* Client - consume prices and print it to output
-* Proto - profobuf definition
+* **Money Maker** - submit prices on server 
+* **Server** - consume new prices and notify clients with a new prices
+* **Client** - consume prices and print it to output
+* **Proto** - profobuf definition
