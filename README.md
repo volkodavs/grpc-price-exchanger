@@ -2,6 +2,9 @@
 
 ## Purpose 
 
+Create gRPC application where services will interact with each other. 
+
+## Architecture
 
 ![grpc-arm](https://user-images.githubusercontent.com/4140597/32380618-6967a49c-c0a8-11e7-8897-e1851aba038d.png)
 
