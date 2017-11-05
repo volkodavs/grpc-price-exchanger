@@ -38,7 +38,7 @@ Create gRPC application where services will interact with each other.
 | Build in testing support||
 | Based on HTTP/2|| 
 | Use protobuf by default||
-| Interface definition language || 
+| Interface definition language (IDL) || 
 | Growing ecosystem ||
 
 
