@@ -19,6 +19,29 @@ Create gRPC application where services will interact with each other.
   * using blocking stub for simplicity
 * **Proto** - profobuf definition
 
+## Pros and Cons
+
+
+| Pros          | Cons| 
+| ------------- |-------------:|
+| Very fast 362,788 QPS on 8 cores client & server | | 
+| Netty async non blocking IO  | | 
+| Bi-derection streaming with TCO multiplexing      | |
+| Deadline propagation | | 
+| Cancelation propagation | |
+| Flow control || 
+| Support distributed tracing: Open Tracing, Zipkin || 
+| gRPC monitoring: prometheus ||
+| SSL/TLS, token based auth with Google, auth API ||
+| Build in strategy for service discovery & load balancing || 
+| Support more than 10+ languages ||
+| Build in testing support||
+| Based on HTTP/2|| 
+| Use protobuf by default||
+| Interface definition language || 
+| Growing ecosystem ||
+
+
 
 ## Proto IDL
 
@@ -76,3 +99,7 @@ service PriceExchangeService {
 
 
 ```
+
+## References
+
+* https://performance-dot-grpc-testing.appspot.com/explore?dashboard=5636470266134528
