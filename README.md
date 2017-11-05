@@ -70,7 +70,7 @@ message FindOneRequest {
 }
 
 service PriceExchangeService {
-    rpc addPrice (Event) returns (AddResponse);
+    rpc addPrice (stream Event) returns (AddResponse);
     rpc getPrice (FindOneRequest) returns (stream Event);
 }
 
