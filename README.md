@@ -26,7 +26,7 @@ Create gRPC application where services will interact with each other.
 | ------------- |-------------:|
 | Very fast streaming secure 362,788 QPS on 8 cores client & server | | 
 | Netty async non blocking IO  | | 
-| Bi-derection streaming with TCP multiplexing      | |
+| Bi-direction streaming with TCP multiplexing      | |
 | Deadline propagation | | 
 | Cancelation propagation | |
 | Flow control || 
