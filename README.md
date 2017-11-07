@@ -23,7 +23,7 @@ Create gRPC application where services will interact with each other.
 
 
 | Pros          | Cons| 
-| ------------- |-------------:|
+| ------------- |-------------|
 | Very fast streaming secure 362,788 QPS on 8 cores client & server (6.11.2017) | Adoption by external customer?  | 
 | Netty async non blocking IO  | HAProxy balancing is hacky (do you need it?) | 
 | Bi-direction streaming with TCP multiplexing      | |
