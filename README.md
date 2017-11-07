@@ -42,6 +42,12 @@ Create gRPC application where services will interact with each other.
 | Growing ecosystem ||
 
 
+## How to run
+
+### Observe Events
+
+* **Start server** ```mvn exec:java@event-client```
+* **Start client** ```mvn exec:java@event-client```
 
 
 ## References
