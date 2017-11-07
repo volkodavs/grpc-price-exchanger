@@ -11,13 +11,11 @@ Create gRPC application where services will interact with each other.
 ## Modules 
 
 * **Money Maker** - submit prices on server 
-  * submit price in random fashion from 1 to 5 sec
-  * using blocking stub for simplicity
-* **Server** - consume new prices and notify clients with a new prices
-  * register the clients in Set  
-* **Client** - consume prices and print it to output
-  * using blocking stub for simplicity
-* **Proto** - profobuf definition
+  * submit price in random fashion from every 5 sec
+* **Server** - consume bets, notify event updates 
+  * register clients
+* **Client** - consume event updates
+* **Proto** - proto files
 
 ## Pros and Cons
 
