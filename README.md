@@ -24,8 +24,8 @@ Create gRPC application where services will interact with each other.
 
 | Pros          | Cons| 
 | ------------- |-------------:|
-| Very fast streaming secure 362,788 QPS on 8 cores client & server | | 
-| Netty async non blocking IO  | | 
+| Very fast streaming secure 362,788 QPS on 8 cores client & server (6.11.2017) | Adoption by external customer?  | 
+| Netty async non blocking IO  | HAProxy balancing is hacky (do you need it?) | 
 | Bi-direction streaming with TCP multiplexing      | |
 | Deadline propagation | | 
 | Cancelation propagation | |
@@ -43,62 +43,6 @@ Create gRPC application where services will interact with each other.
 
 
 
-## Proto IDL
-
-```
-syntax = "proto3";
-
-import "google/protobuf/timestamp.proto";
-
-option java_multiple_files = true;
-package com.sergeyvolkodav.grpc.proto;
-
-enum PriceSide {
-    BACK = 0;
-    LAY = 1;
-}
-
-enum Currency {
-    US = 0;
-    EUR = 1;
-    GBR = 2;
-}
-
-message Event {
-    int64 id = 1;
-    string name = 2;
-    repeated Market market = 3;
-    google.protobuf.Timestamp timestamp = 4;
-}
-
-message Market {
-    int64 id = 1;
-    string name = 2;
-    repeated Price prices = 3;
-}
-
-message Price {
-    int64 id = 1;
-    int64 price = 2;
-    PriceSide side = 3;
-    Currency currency = 4;
-}
-
-message AddResponse {
-    int64 id = 1;
-}
-
-message FindOneRequest {
-    int64 id = 1;
-}
-
-service PriceExchangeService {
-    rpc addPrice (stream Event) returns (AddResponse);
-    rpc getPrice (FindOneRequest) returns (stream Event);
-}
-
-
-```
 
 ## References
 
