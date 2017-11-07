@@ -46,9 +46,12 @@ Create gRPC application where services will interact with each other.
 
 ### Observe Events
 
-* **Start server** ```mvn exec:java@event-client```
+* **Start server** ```mvn exec:java@server```
 * **Start client** ```mvn exec:java@event-client```
 
+### Submit Bets
+* **Start server** ```mvn exec:java@server```
+* **Start money-maker** ```mvn exec:java@money-maker```
 
 ## References
 
