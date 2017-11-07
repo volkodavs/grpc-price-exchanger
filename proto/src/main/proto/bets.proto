@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package com.sergeyvolkodav.grpc.proto.bets;
+
+enum OddsType {
+    ODDS_UNKNOWN = 0;
+    DECIMAL = 1;
+}
+
+enum Currency {
+    CURRENCY_UNKNOWN = 0;
+    USD = 1;
+    EUR = 2;
+    GBR = 3;
+}
+
+message BetRequest {
+    string guid = 1;
+    int64 sportId = 2;
+    int64 runnerId = 3;
+    int64 marketId = 4;
+    int64 eventId = 5;
+    string offerTime = 6; //Why do we need that ?
+    OddsType oddsType = 7;
+    string odds = 8;
+    string stake = 9;
+    int64 externalBetId = 10;
+    int64 externalAccountId = 11;
+    Currency currency = 12;
+}
+
+message BetResponse {
+    int64 sportId = 1;
+    int64 runnerId = 2;
+    int64 marketId = 3;
+    int64 eventId = 4;
+    string offerTime = 5;
+    OddsType oddsType = 6;
+    string odds = 7;
+    string stake = 8;
+    int64 externalBetId = 9;
+    int64 externalAccountId = 10;
+    Currency currency = 11;
+}
+
+service BetsService {
+    rpc submitBet (BetRequest) returns (BetResponse);
+}
+
+

@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+package com.sergeyvolkodav.grpc.proto.event;
+
+
+enum Status {
+    STATUS_UNKNOWN = 0;
+    OPEN = 1;
+    CLOSE = 2;
+    IN_PLAY = 3;
+}
+
+enum MarketType {
+    MARKET_TYPE_UNKNOWN = 0;
+    MONEY_LINE = 1;
+}
+
+message EventRequest {
+    repeated int64 sportId = 1;
+    int32 limit = 2;
+}
+
+message EventResponse {
+    int64 id = 1;
+    string name = 2;
+    int64 sportId = 3;
+    string country = 4;
+    string competition = 5;
+    string location = 6;
+    string startTime = 7; //will be more efficient if we will use timestamp
+    bool inRunning = 8;
+    Status status = 9;
+    repeated Market markets = 10;
+}
+
+message Market {
+    int64 id = 1;
+    MarketType type = 2;
+    Status status = 3;
+    int32 handicap = 4;
+    string name = 5;
+    repeated Runner runners = 6;
+}
+
+message Runner {
+    int64 id = 1;
+    string name = 2;
+    Status status = 3;
+    int32 handicap = 4;
+}
+
+
+service EventService {
+    rpc observeEvents (stream EventRequest) returns (stream EventResponse);
+}
