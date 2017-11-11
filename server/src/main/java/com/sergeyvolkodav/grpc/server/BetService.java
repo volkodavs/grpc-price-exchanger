@@ -1,8 +1,9 @@
 package com.sergeyvolkodav.grpc.server;
 
-import com.sergeyvolkodav.grpc.proto.bets.BetRequest;
-import com.sergeyvolkodav.grpc.proto.bets.BetResponse;
-import com.sergeyvolkodav.grpc.proto.bets.BetsServiceGrpc;
+import com.google.protobuf.Timestamp;
+import com.sergeyvolkodav.grpc.proto.feed.BetRequest;
+import com.sergeyvolkodav.grpc.proto.feed.BetResponse;
+import com.sergeyvolkodav.grpc.proto.feed.BetsServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
 public class BetService extends BetsServiceGrpc.BetsServiceImplBase {
@@ -11,15 +12,8 @@ public class BetService extends BetsServiceGrpc.BetsServiceImplBase {
     public void submitBet(BetRequest request, StreamObserver<BetResponse> responseObserver) {
 
         BetResponse response = BetResponse.newBuilder()
-                .setCurrency(request.getCurrency())
-                .setEventId(request.getEventId())
-                .setMarketId(request.getMarketId())
-                .setCurrencyValue(request.getCurrencyValue())
-                .setOfferTime(request.getOfferTime())
-                .setOddsType(request.getOddsType())
+                .setBetTime(Timestamp.newBuilder().setSeconds(System.currentTimeMillis() / 1000).build())
                 .setStake(request.getStake())
-                .setExternalBetId(request.getExternalBetId())
-                .setExternalAccountId(request.getExternalAccountId())
                 .build();
 
         responseObserver.onNext(response);

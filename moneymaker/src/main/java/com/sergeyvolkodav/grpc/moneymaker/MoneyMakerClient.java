@@ -2,14 +2,14 @@ package com.sergeyvolkodav.grpc.moneymaker;
 
 import static java.util.UUID.randomUUID;
 
-import java.util.Date;
 import java.util.Random;
 
-import com.sergeyvolkodav.grpc.proto.bets.BetRequest;
-import com.sergeyvolkodav.grpc.proto.bets.BetResponse;
-import com.sergeyvolkodav.grpc.proto.bets.BetsServiceGrpc;
-import com.sergeyvolkodav.grpc.proto.bets.Currency;
-import com.sergeyvolkodav.grpc.proto.bets.OddsType;
+import com.google.protobuf.Timestamp;
+import com.sergeyvolkodav.grpc.proto.feed.BetRequest;
+import com.sergeyvolkodav.grpc.proto.feed.BetResponse;
+import com.sergeyvolkodav.grpc.proto.feed.BetsServiceGrpc;
+import com.sergeyvolkodav.grpc.proto.feed.Currency;
+import com.sergeyvolkodav.grpc.proto.feed.Stake;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -28,13 +28,9 @@ public class MoneyMakerClient {
         while (true) {
             Float stake = random.nextInt(100) + random.nextFloat();
             BetRequest request = BetRequest.newBuilder()
-                    .setCurrency(Currency.USD)
-                    .setEventId(random.nextInt(2))
-                    .setMarketId(random.nextInt(2))
                     .setGuid(randomUUID().toString())
-                    .setOfferTime(new Date().toString())
-                    .setOddsType(OddsType.DECIMAL)
-                    .setStake(stake.toString())
+                    .setBetTime(Timestamp.newBuilder().setSeconds(System.currentTimeMillis() / 1000).build())
+                    .setStake(Stake.newBuilder().setAmount(stake.toString()).setCurrency(Currency.EUR).build())
                     .setExternalBetId(random.nextLong())
                     .setExternalAccountId(random.nextInt(2))
                     .build();
