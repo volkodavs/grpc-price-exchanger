@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+package com.sergeyvolkodav.grpc.proto.feed;
+
+
+message User {
+    string email = 1;
+}
+
+message JwtAccessToken {
+    string type = 1;
+    string access_token = 2;
+}
+
+service AuthService {
+    rpc signUp (User) returns (JwtAccessToken);
+}

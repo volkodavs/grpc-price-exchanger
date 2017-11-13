@@ -3,13 +3,17 @@ package com.sergeyvolkodav.grpc.moneymaker;
 import static java.util.UUID.randomUUID;
 
 import java.util.Random;
+import java.util.stream.Stream;
 
 import com.google.protobuf.Timestamp;
+import com.sergeyvolkodav.grpc.proto.feed.AuthServiceGrpc;
 import com.sergeyvolkodav.grpc.proto.feed.BetRequest;
 import com.sergeyvolkodav.grpc.proto.feed.BetResponse;
 import com.sergeyvolkodav.grpc.proto.feed.BetsServiceGrpc;
 import com.sergeyvolkodav.grpc.proto.feed.Currency;
+import com.sergeyvolkodav.grpc.proto.feed.JwtAccessToken;
 import com.sergeyvolkodav.grpc.proto.feed.Stake;
+import com.sergeyvolkodav.grpc.proto.feed.User;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -17,13 +21,20 @@ import io.grpc.stub.StreamObserver;
 public class MoneyMakerClient {
 
     public static void main(String[] args) throws InterruptedException {
+        Random random = new Random();
 
         ManagedChannel grpcChannel = NettyChannelBuilder
                 .forAddress("localhost", 8090)
                 .usePlaintext(true).build();
 
-        BetsServiceGrpc.BetsServiceStub asyncStub = BetsServiceGrpc.newStub(grpcChannel);
-        Random random = new Random();
+
+        AuthServiceGrpc.AuthServiceBlockingStub autStub = AuthServiceGrpc.newBlockingStub(grpcChannel);
+        JwtAccessToken jwtAccessToken = autStub.signUp(User.newBuilder().setEmail("sergii@email.com").build());
+
+        JwtCallCredential callCredential = new JwtCallCredential(jwtAccessToken.getAccessToken());
+        BetsServiceGrpc.BetsServiceStub asyncStub = BetsServiceGrpc.newStub(grpcChannel)
+                .withCallCredentials(callCredential);
+
 
         while (true) {
             Float stake = random.nextInt(100) + random.nextFloat();
