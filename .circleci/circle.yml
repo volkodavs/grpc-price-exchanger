@@ -26,4 +26,4 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: mvn package
+      - run: mvn install
