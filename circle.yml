@@ -1,0 +1,9 @@
+machine:
+  java:
+    version: openjdk8
+  environment:
+      _JAVA_OPTIONS: "-Xms1536m -Xmx1536m"
+
+dependencies:
+ override:
+  - mvn install -DskipTests
