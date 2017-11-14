@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/circleci-app
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    steps:
+      - run: mvn package

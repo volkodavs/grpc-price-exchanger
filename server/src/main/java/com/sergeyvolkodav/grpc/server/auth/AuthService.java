@@ -27,8 +27,7 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
         responseObserver.onNext(jwtAccessToken);
         responseObserver.onCompleted();
     }
-
-
+    
     private String createJwt(String subject) {
         final long iat = System.currentTimeMillis() / 1000l;
         final long exp = iat + 3600L;
