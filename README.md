@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/volkodavs/grpc-price-exchanger.svg?style=svg)](https://circleci.com/gh/volkodavs/grpc-price-exchanger)
+
 # gRPC Price Exchanger
 
 ## Purpose 
