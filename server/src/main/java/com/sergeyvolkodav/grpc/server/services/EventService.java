@@ -1,4 +1,4 @@
-package com.sergeyvolkodav.grpc.server;
+package com.sergeyvolkodav.grpc.server.services;
 
 
 import static java.lang.Math.abs;

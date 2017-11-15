@@ -1,4 +1,4 @@
-package com.sergeyvolkodav.grpc.server;
+package com.sergeyvolkodav.grpc.server.services;
 
 import com.google.protobuf.Timestamp;
 import com.sergeyvolkodav.grpc.proto.feed.BetRequest;

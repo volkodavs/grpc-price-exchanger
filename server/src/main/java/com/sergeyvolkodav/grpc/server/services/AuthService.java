@@ -1,4 +1,4 @@
-package com.sergeyvolkodav.grpc.server.auth;
+package com.sergeyvolkodav.grpc.server.services;
 
 import java.util.HashMap;
 
@@ -21,7 +21,6 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
 
         String jwtToken = createJwt(request.getEmail());
         JwtAccessToken jwtAccessToken = JwtAccessToken.newBuilder()
-                .setType("Bearer")
                 .setAccessToken(jwtToken)
                 .build();
         responseObserver.onNext(jwtAccessToken);
@@ -41,4 +40,5 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
 
         return signer.sign(claims);
     }
+
 }
