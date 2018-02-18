@@ -31,7 +31,7 @@ Create gRPC application where services will interact with each other.
 | Netty async non blocking IO  | HAProxy balancing is hacky (do you need it?) | 
 | Bi-direction streaming with TCP multiplexing      | |
 | Deadline propagation | | 
-| Cancelation propagation | |
+| Cancellation propagation | |
 | Flow control || 
 | Support distributed tracing: Open Tracing, Zipkin || 
 | gRPC monitoring: prometheus ||
